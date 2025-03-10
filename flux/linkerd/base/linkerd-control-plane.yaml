@@ -1,0 +1,41 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkerd-control-plane
+  namespace: linkerd
+spec:
+  interval: 30m
+  targetNamespace: linkerd
+  dependsOn:
+    - name: linkerd-crds
+  releaseName: linkerd-control-plane
+  chart:
+    spec:
+      version: "1.x"
+      chart: linkerd-control-plane
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+      interval: 12h
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+      remediateLastFailure: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: source-linkerd-identity-trust-roots
+      valuesKey: ca-bundle.crt
+      targetPath: identityTrustAnchorsPEM
+    - kind: Secret
+      name: source-linkerd-identity-issuer
+      valuesKey: tls.crt
+      targetPath: identity.issuer.tls.crtPEM
+    - kind: Secret
+      name: source-linkerd-identity-issuer
+      valuesKey: tls.key
+      targetPath: identity.issuer.tls.keyPEM
+
+

@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  ca-bundle.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIBjzCCATSgAwIBAgIRAIRPlgbRpaBmhT12J7escMUwCgYIKoZIzj0EAwIwJTEj
+    MCEGA1UEAxMacm9vdC5saW5rZXJkLmNsdXN0ZXIubG9jYWwwHhcNMjQwODIyMjMy
+    ODE4WhcNMzQwODIwMjMyODE4WjAlMSMwIQYDVQQDExpyb290LmxpbmtlcmQuY2x1
+    c3Rlci5sb2NhbDBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABMDOUS3PK9rcA4SW
+    qT6aY+TUPJ9xFu9Be1I5RQ07K0vdztB69p18M730mu3WiSP6KYqHIuRWaNtpAX63
+    91oUW2mjRTBDMA4GA1UdDwEB/wQEAwIBBjASBgNVHRMBAf8ECDAGAQH/AgEBMB0G
+    A1UdDgQWBBQuxpJxcVOkFRayBcWmg1SAECfR5jAKBggqhkjOPQQDAgNJADBGAiEA
+    jt4Mm2SSKlbaKQnzejV6liLfU9uOlijrTWuIB3Yy7WkCIQCrmm3xXG+y/tKjyGOo
+    KJMD6HKC87C5oRlhGL3VmINh9Q==
+    -----END CERTIFICATE-----
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: source-linkerd-identity-trust-roots
+  namespace: linkerd

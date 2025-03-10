@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: customer-service
+  namespace: default
+spec:
+  dependsOn:
+    - name: kafka
+  chart:
+    spec:
+      chart: customer-service
+      sourceRef:
+        kind: HelmRepository
+        name: application
+      version: "0.1.0-BUILD.20231029175037" 
+  interval: 15s

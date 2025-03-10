@@ -1,0 +1,24 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: flagger
+  namespace: flagger-system
+spec:
+  chart:
+    spec:
+      chart: flagger
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: flagger
+  interval: 15s
+  targetNamespace: flagger-system
+  values:
+    prometheus:
+      install: false
+    meshProvider: linkerd
+    metricsServer: http://prometheus.linkerd-viz.svc.cluster.local:9090
+    linkerdAuthPolicy:
+      create: true
+

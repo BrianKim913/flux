@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: flagger-loadtester
+  namespace: flagger-system
+spec:
+  chart:
+    spec:
+      chart: loadtester
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: flagger
+        namespace: flagger-system
+  interval: 15s
+  targetNamespace: flagger-system
+
